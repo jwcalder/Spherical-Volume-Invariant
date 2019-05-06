@@ -1,21 +1,27 @@
 This code computes the spherical volume invariant and PCA on local neighborhoods using the boundary integral method described in the paper
 
-"Computation of circular area and spherical volume invariants via boundary integrals",  Riley O'Neill, Pedro Angulo-Umana, Jeff Calder, Bo Hessburg, Peter Olver, Cheri Shakiban, and Katrina Yezzi-Woodley, preprint, 2019.
+"Computation of circular area and spherical volume invariants via boundary integrals",  Riley O'Neill, Pedro Angulo-Umana, Jeff Calder, Bo Hessburg, Peter J. Olver, Chehrzad Shakiban, and Katrina Yezzi-Woodley, preprint, 2019.
 
 COMPILATION
 
 The core subroutines are coded in C, and need to be compiled. We provide Matlab and Python interfaces for the C code. For Matlab, we use the MEX interface. If MEX is not configured, enter "mex -setup" in the Matlab command window. Then navigate within Matlab to the c_code/ folder and execute the mexmake.m script to compile the c code. For Python, we use an extension module. Run svi_setup.py with options "build_ext --inplace" to compile the code for python. From the command line in a UNIX environment the compilation command is
 
+```
 >> python3 svi_setup.py build_ext --inplace
+```
 
 From within an interactive Python shell it is
 
+```
 >> run svi_setup.py build_ext --inplace
+```
 
 IMPORTANT: When compiling the code for Python, you must comment out the lines
 
+```
 #include "mex.h"
 #define MEX
+```
 
 at the start of svi_computations.c.
 
@@ -23,25 +29,31 @@ USAGE
 
 Matlab: The code takes as input a triangulated mesh in the Matlab triangulation format
 
+```
 >> T = triangulation(F,V);
+```
 
 where F is the triangle list and V is vertex list. To compute and plot the spherical volume invariant, run the code below from the main directory
 
+```
 >> addpath('c_code');
 >> load('meshes/dragon.mat');
 >> S = svi(T,1); 
 >> color_surf(T,S,1,[-15 15]);
+```
 
 This code is contained in svi_demo.m.
 
 For PCA on local neighborhoods run from the main directory
 
+```
 >> addpath('c_code');
 >> load('meshes/dragon.mat');
 >> [S,K1,K2] = svipca(T,1);
 >> color_surf(T,K1,0.6,[-15 15]); title('K1');
 >> color_surf(T,K2,0.6,[-15 15]); title('K2');
 >> color_surf(T,K1.*K2,0.6,[-15 15]); title('Gauss Curvature');
+```
 
 This code is contained in svipca_demo.m
 
