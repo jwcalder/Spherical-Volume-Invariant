@@ -1,3 +1,6 @@
+Spherical Volume Invariant
+==========================
+
 This code computes the spherical volume invariant and PCA on local neighborhoods using the boundary integral method described in the paper
 
 "Computation of circular area and spherical volume invariants via boundary integrals",  Riley O'Neill, Pedro Angulo-Umana, Jeff Calder, Bo Hessburg, Peter J. Olver, Chehrzad Shakiban, and Katrina Yezzi-Woodley, preprint, 2019.
